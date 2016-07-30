@@ -1,0 +1,68 @@
+def Agregar():
+    os.system("cls")
+    print("Agregar articulo.")
+    print("------------------------- \n")
+
+    nombre=input("Nombre: ")
+    precio=input("Precio: ")
+    
+    con=sqlite3.connect("Clinica San Juan de Dios.s3db")
+    cursor=con.cursor()
+    cursor.execute("insert into ServiciosClinicaSanJuanDeDios (Servicio, Adicional) values ('"+nombre+"','"+precio+"')")
+    con.commit()
+    con.close()
+    os.system("cls")
+    input("Articulo registrado con exito..!")
+    Menu()
+    
+def Ver():
+    os.system("cls")
+    print("Articulos Registrados.")
+    print("............. \n")
+    con=sqlite3.connect("Clinica San Juan de Dios.s3db")
+
+    cursor=con.cursor
+
+    cursor.execute("SELECT * FROM ServiciosClinicaSanJuanDeDios")
+
+    for v in cursor:
+        print("Nombre: ",v[1])
+        print("Precio: ",v[2])
+        print("\n----------\n")
+        input("Presione enter para volver al menu...")
+    con.close()
+    Menu()
+    
+def Menu():
+    os.system("clear")
+    os.system("color e")
+    print()
+    print("Menu")
+    print()
+    print("\t(1)Ver articulos.")
+    print()
+    print("\t(2)Agregar Articulo.")
+    print()
+    print("\t(3)Modificar Articulo.")
+    print()
+    print("\t(4)Eliminar Articulo.")
+    print()
+    print("\t(5)Salir.")
+    print()
+
+    select=input("Digite una opcion del menu: ")
+
+    if select == "1":
+        Ver()
+    elif selext=="2":
+        Agregar()
+    elif select == "5":
+        os.system("cls")
+        input("¡Que pase un feliz resto del dia!")
+        os.system("cls")
+        sys.exit()
+    else:
+        os.system("cls")
+        input("¡Digite una opcion valida del menu!")
+        Menu()
+    Menu()
